@@ -6,7 +6,7 @@
     <packaging>jar</packaging>
 
     <groupId>com.github.claremontqualitymanagement</groupId>
-    <version>4.0.1</version>
+    <version>4.0.2-SNAPSHOT</version>
     <url>https://github.com/claremontqualitymanagement/TestAutomationFramework</url>
     <name>TAF - SOAP support</name>
     <description>This is the module enabling interacting with SOAP interfaces for Claremont TAF</description>
@@ -38,7 +38,7 @@
         <connection>scm:git:git://github.com/claremontqualitymanagement/TestAutomationFramework.git</connection>
         <developerConnection>scm:git://github.com/claremontqualitymanagement/TestAutomationFramework.git</developerConnection>
         <url>https://github.com/claremontqualitymanagement/TestAutomationFramework</url>
-        <tag>taf.soapsupport-4.0.1</tag>
+        <tag>taf.eyesupport-4.0.1</tag>
     </scm>
 
 
