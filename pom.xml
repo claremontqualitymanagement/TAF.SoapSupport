@@ -2,11 +2,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <groupId>com.github.claremontqualitymanagement</groupId>
     <artifactId>taf.soapsupport</artifactId>
+    <version>4.0.3-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <groupId>com.github.claremontqualitymanagement</groupId>
-    <version>4.0.3-SNAPSHOT</version>
     <url>https://github.com/claremontqualitymanagement/TestAutomationFramework</url>
     <name>TAF - SOAP support</name>
     <description>This is the module enabling interacting with SOAP interfaces for Claremont TAF</description>
@@ -35,10 +35,10 @@
     </licenses>
 
     <scm>
-        <connection>scm:git:git://github.com/claremontqualitymanagement/TestAutomationFramework.git</connection>
-        <developerConnection>scm:git://github.com/claremontqualitymanagement/TestAutomationFramework.git</developerConnection>
-        <url>https://github.com/claremontqualitymanagement/TestAutomationFramework</url>
-        <tag>taf.eyesupport-4.0.1</tag>
+        <connection>scm:git:git://github.com/claremontqualitymanagement/TAF.SoapSupport.git</connection>
+        <developerConnection>scm:git://github.com/claremontqualitymanagement/TAF.SoapSupport.git</developerConnection>
+        <url>https://github.com/claremontqualitymanagement/TAF.SoapSupport</url>
+        <tag>taf.soapsupport</tag>
     </scm>
 
 
@@ -50,9 +50,9 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.github.claremontqualitymanagement.TestAutomationFramework</groupId>
-            <artifactId>Core</artifactId>
-            <version>3.0.11</version>
+            <groupId>com.github.claremontqualitymanagement</groupId>
+            <artifactId>taf.core</artifactId>
+            <version>4.2.1</version>
         </dependency>
     </dependencies>
 
@@ -107,21 +107,6 @@
                 </executions>
             </plugin>
 
-            <!-- Sign the file to disable modifications -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-gpg-plugin</artifactId>
-                <version>1.6</version>
-                <executions>
-                    <execution>
-                        <id>sign-artifacts</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>sign</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
             <!-- Prepare for upload to Maven Central by pointing out nexus server -->
             <plugin>
                 <groupId>org.sonatype.plugins</groupId>
@@ -190,5 +175,37 @@
 
         </plugins>
     </build>
+
+    <profiles>
+        <!-- GPG Signature on release -->
+        <profile>
+            <id>release-sign-artifacts</id>
+            <activation>
+                <property>
+                    <name>performRelease</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <!-- Sign the file to disable modifications upon release -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.6</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
 </project>
